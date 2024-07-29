@@ -2,7 +2,9 @@ package com.example.employee_management.Service;
 
 
 import com.example.employee_management.Repository.DesignationRepository;
+import com.example.employee_management.Transformer.DesignationTransformer;
 import com.example.employee_management.dto.request.DesignationRequest;
+import com.example.employee_management.dto.response.DesignationResponse;
 import com.example.employee_management.model.Designation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,12 @@ public class DesignationService {
 
     @Autowired
     DesignationRepository designationRepository;
-    public void addDesignation(DesignationRequest designationRequest) {
+    public DesignationResponse addDesignation(DesignationRequest designationRequest) {
         Designation designation = new Designation();
         designation.setDesignation_name(designationRequest.getDesignation_name());
         designation.setSalary(designationRequest.getSalary());
-        designationRepository.save(designation);
+        Designation savedDesignation = designationRepository.save(designation);
+        return DesignationTransformer.designationToDesignationResponse(savedDesignation);
     }
 
     public List<Designation> getAll() {

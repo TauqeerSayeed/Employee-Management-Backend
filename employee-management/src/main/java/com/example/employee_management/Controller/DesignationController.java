@@ -4,6 +4,7 @@ import com.example.employee_management.Service.DesignationService;
 import com.example.employee_management.dto.request.DesignationRequest;
 import com.example.employee_management.dto.response.DesignationResponse;
 import com.example.employee_management.model.Designation;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,8 @@ public class DesignationController {
     DesignationService designationService;
 
     @PostMapping("/add")
-    public void addDesignation(@RequestBody DesignationRequest designationRequest){
-        designationService.addDesignation(designationRequest);
-
+    public DesignationResponse addDesignation(@Valid  @RequestBody DesignationRequest designationRequest){
+        return designationService.addDesignation(designationRequest);
     }
 
     @GetMapping("/get-all-designation")

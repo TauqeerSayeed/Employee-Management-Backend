@@ -5,6 +5,7 @@ import com.example.employee_management.Service.EmployeeService;
 import com.example.employee_management.dto.request.EmployeeRequest;
 import com.example.employee_management.dto.response.EmployeeResponse;
 import com.example.employee_management.model.Employee;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/add/{id}")
-    public EmployeeResponse  addEmployee(@RequestBody EmployeeRequest employeeRequest,
+    public EmployeeResponse  addEmployee(@Valid @RequestBody EmployeeRequest employeeRequest,
                              @PathVariable("id") int id){
         return employeeService.addEmployee(employeeRequest,id);
     }

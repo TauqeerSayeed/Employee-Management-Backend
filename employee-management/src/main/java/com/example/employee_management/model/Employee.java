@@ -17,8 +17,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeId;
 
+    @Column(name = "employee_name")
     private String name;
 
+    @Column(name = "employee_age")
     private int age;
 
     private String email;
